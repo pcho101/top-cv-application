@@ -1,0 +1,80 @@
+.App {
+  background-color: #eeeeee;
+  box-shadow: 0 0 8px 8px rgb(0 0 0 / 20%);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  min-height: 1056px;
+  margin: 0 auto 20px;
+}
+
+.General {
+  grid-column: 1 / 3;
+  background-color: #284b68;
+}
+
+.General:hover .Content .edit-general {
+  display: block;
+}
+
+.Content {
+  color: white;
+  align-items: center;
+  position: relative;
+}
+
+.General .Content h1 {
+  font-size: 64px;
+  text-align: center;
+  margin: 16px;
+  text-shadow: 1px 1px 2px rgb(0 0 0);
+}
+
+.General .Content h2 {
+  font-size: 32px;
+  text-align: center;
+  margin: 8px;
+  text-shadow: 1px 1px 2px rgb(0 0 0);
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-info div {
+  font-size: 1.3rem;
+}
+
+.contact-info div span {
+  font-weight: 700;
+}
+
+.general-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+form label {
+  color: white;
+}
+
+form input {
+  padding: 4px;
+}
+
+.edit-general {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin-right: 24px;
+  margin-top: 18px;
+}
+
+button {
+  padding: 8px 16px;
+  text-transform: uppercase;
+}
+

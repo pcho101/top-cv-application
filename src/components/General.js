@@ -9,11 +9,11 @@ class General extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
 
     this.state = {
-      name: "Bender",
-      title: "Bending Specialist",
-      phone: "123-456-789",
-      email: "abc@ghi.xyz",
-      linkedin: "abc@linkedin.com",
+      name: "Bender Bending Rodriguez",
+      title: "Bending Unit",
+      phone: "010-100-101",
+      email: "bend@planex.xyz",
+      linkedin: "bend@linkedin.com",
       
       visible: true,
     };
@@ -47,54 +47,55 @@ class General extends Component {
           className="Content"
           style={{display: this.state.visible ? "block" : "none"}}
         >
-          <h1>Name: {this.state.name}</h1>
-          <h2>Title: {this.state.title}</h2>
-          <div>Phone: {this.state.phone}</div>
-          <div>Email: {this.state.email}</div>
-          <div>Linkedin: {this.state.linkedin}</div>
-          <button onClick={this.editContent}>Edit</button>
+          <h1>{this.state.name}</h1>
+          <h2>{this.state.title}</h2>
+          <div className="contact-info">
+            <div><span>Phone: </span>{this.state.phone}</div>
+            <div><span>Email: </span>{this.state.email}</div>
+            <div><span>Linkedin: </span>{this.state.linkedin}</div>
+          </div>
+          <button className="edit-general" onClick={this.editContent}>Edit</button>
         </div>
-        <form
-          style={{display: !this.state.visible ? "block" : "none"}}
-          onSubmit={this.onSubmitForm}
-        >
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            value={this.state.name}
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            type="text"
-            value={this.state.title}
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="phone">Phone</label>
-          <input
-            id="phone"
-            type="tel"
-            value={this.state.phone}
-            onChange={this.handleInputChange}
+        <div className="general-form" style={{display: !this.state.visible ? "block" : "none"}}>
+          <form onSubmit={this.onSubmitForm}>
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.handleInputChange}
             />
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="linkedin">Linkedin</label>
-          <input
-            id="linkedin"
-            type="text"
-            value={this.state.linkedin}
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Submit</button>
-        </form>
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              value={this.state.title}
+              onChange={this.handleInputChange}
+            />
+            <label htmlFor="phone">Phone</label>
+            <input
+              id="phone"
+              type="tel"
+              value={this.state.phone}
+              onChange={this.handleInputChange}
+              />
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+            />
+            <label htmlFor="linkedin">Linkedin</label>
+            <input
+              id="linkedin"
+              type="text"
+              value={this.state.linkedin}
+              onChange={this.handleInputChange}
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     )
   }
