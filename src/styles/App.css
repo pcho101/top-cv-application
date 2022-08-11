@@ -78,3 +78,82 @@ button {
   text-transform: uppercase;
 }
 
+
+.Education {
+  background-color: #dddddd;
+  position: relative;
+}
+
+.Education .Content {
+  color: black;
+}
+
+.Education h1 {
+  text-align: center;
+}
+
+.Education ul {
+  list-style-type: none;
+}
+
+.Education:hover .add-Education {
+  display: block;
+}
+
+.add-Education {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin-right: 24px;
+  margin-top: 18px;
+}
+
+.school {
+  margin: 8px 0px;
+}
+
+.degree {
+  font-style: italic;
+  font-size: 0.9em;
+  margin: 8px 0px;
+}
+
+.degree-dates {
+  margin: 8px 0px;
+}
+
+.edu-desc {
+  margin-bottom: 24px;
+}
+
+.education-form form label {
+  color: black;
+}
+
+.education-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.btnGroup {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin-right: 24px;
+  margin-top: 18px;
+}
+
+li {
+  position: relative;
+}
+
+li:hover .btnGroup {
+  display: block;
+}
+
+
+
