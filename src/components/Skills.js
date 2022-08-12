@@ -17,7 +17,20 @@ class Skills extends Component {
         skill: "Drinking",
 
         visible: true,
-      }],
+      },
+      {
+        id: 1,
+        skill: "Gambling",
+
+        visible: true,
+      },
+      {
+        id: 2,
+        skill: "Bending",
+
+        visible: true,
+      }
+      ],
     };
   }
 
@@ -58,7 +71,7 @@ class Skills extends Component {
     this.setState({
       history: history.concat([{
         id: number,
-        skill: '',
+        skill: "Skill",
 
         visible: true,
       }]),
@@ -78,31 +91,34 @@ class Skills extends Component {
       return (
         <li key={index}>
           <div className="Content" style={{display: this.state.history[index].visible ? "block" : "none"}}>
-            <h2>skill: {this.state.history[index].skill}</h2>
-            <button id={index} onClick={this.editContent}>Edit</button>
+            <h2>{this.state.history[index].skill}</h2>
           </div>
-          <button id={index} onClick={this.deleteContent}>Delete self</button>
-          <form
-            id={index}
-            style={{display: !this.state.history[index].visible ? "block" : "none"}}
-            onSubmit={this.onSubmitForm}
-          >
-            <label htmlFor="skill">Skill</label>
-            <input
-              id="skill"
-              type="text"
-              value={this.state.history[index].skill}
-              onChange={this.handleInputChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
+          <div className="btnGroup">
+            <button id={index} onClick={this.editContent} style={{display: this.state.history[index].visible ? "inline-block" : "none"}}>E</button>
+            <button id={index} onClick={this.deleteContent}>X</button>
+          </div>
+          <div className="skill-form" style={{display: !this.state.history[index].visible ? "block" : "none"}}>
+            <form
+              id={index}
+              onSubmit={this.onSubmitForm}
+            >
+              <label htmlFor="skill">Skill</label>
+              <input
+                id="skill"
+                type="text"
+                value={this.state.history[index].skill}
+                onChange={this.handleInputChange}
+              />
+              <button type="submit">Submit</button>
+            </form>
+          </div>
         </li>
       );
     });
     return (
       <div className="Skills">
         <h1>Skills</h1>
-        <button onClick={this.addNewContent}>Add New Skills</button>
+        <button className="add-Skill" onClick={this.addNewContent}>+</button>
         <ul>{moves}</ul>
       </div>
     )

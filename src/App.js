@@ -19,9 +19,9 @@ class App extends Component {
         />
         <Education
         />
-        <Experience
-        />
         <Skills
+        />
+        <Experience
         />
       </div>
     )
