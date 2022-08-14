@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Tasks from "./Tasks";
 
 class Experience extends Component {
   constructor() {
@@ -18,7 +19,6 @@ class Experience extends Component {
         title: "Chef",
         dateStart: "3000-01",
         dateEnd: "3000-01",
-        tasks: "Cook food",
 
         visible: true,
       }],
@@ -51,7 +51,6 @@ class Experience extends Component {
         if(e.target.id === 'title') element.title = e.target.value;
         if(e.target.id === 'dateStart') element.dateStart = e.target.value;
         if(e.target.id === 'dateEnd') element.dateEnd = e.target.value;
-        if(e.target.id === 'tasks') element.tasks = e.target.value;
       }
       return element;
     })
@@ -70,7 +69,6 @@ class Experience extends Component {
         title: 'Role',
         dateStart: '2022-01',
         dateEnd: '2022-01',
-        tasks: 'Duties',
 
         visible: true,
       }]),
@@ -99,7 +97,7 @@ class Experience extends Component {
                 {new Date(this.state.history[index].dateEnd).toLocaleString('en-US', {year:'numeric', month:'short'})}
               </div>
             </div>
-            <div className="tasks">{this.state.history[index].tasks}</div>
+            <div className="tasks"><Tasks /></div>
           </div>
           <div className="btnGroup">
             <button id={index} onClick={this.editContent} style={{display: this.state.history[index].visible ? "inline-block" : "none"}}>E</button>
@@ -136,13 +134,6 @@ class Experience extends Component {
                 id="dateEnd"
                 type="month"
                 value={this.state.history[index].dateEnd}
-                onChange={this.handleInputChange}
-              />
-              <label htmlFor="tasks">Tasks</label>
-              <input
-                id="tasks"
-                type="text"
-                value={this.state.history[index].tasks}
                 onChange={this.handleInputChange}
               />
               <button type="submit">Submit</button>

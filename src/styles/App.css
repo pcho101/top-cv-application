@@ -262,3 +262,34 @@ li:hover .btnGroup {
   align-items: center;
   padding: 16px;
 }
+
+
+
+.Tasks ul {
+  list-style: disc;
+  padding-inline-start: 16px;
+}
+
+.Tasks ul li {
+  margin: 8px 0px;
+}
+
+.task-btnGroup {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin-right: 24px;
+}
+
+.task-btnGroup button {
+  padding: 0px 8px;
+}
+
+.Tasks ul li:hover .task-btnGroup {
+  display: block;
+}
+
+.add-task {
+  padding: 4px 8px;
+}
