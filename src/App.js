@@ -3,6 +3,8 @@ import Education from "./components/Education";
 import General from "./components/General";
 import Experience from "./components/Experience";
 import Skills from "./components/Skills";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import './styles/App.css';
 
 class App extends Component {
@@ -15,13 +17,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <General
+        <Header
         />
-        <Education
-        />
-        <Skills
-        />
-        <Experience
+        <div className="cv">
+          <General
+          />
+          <Education
+          />
+          <Skills
+          />
+          <Experience
+          />
+        </div>
+        <Footer
         />
       </div>
     )
