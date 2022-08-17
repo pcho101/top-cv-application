@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+:root {
+  --page-width: 816px;
+  --page-margins: 24px;
+  --left-width: calc(var(--page-width)/3 - 2*var(--page-margins));
+}
+
 body {
+  color: black;
   margin: 0px;
   font-family: 'Lato', sans-serif;
 }
@@ -14,11 +21,11 @@ header {
   font-weight: 700;
   padding: 32px 0px;
   margin-bottom: 24px;
-  font-size: 32px;
 }
 
 header h1 {
   margin: 0px;
+  font-size: 48px;
 }
 
 footer {
@@ -34,7 +41,7 @@ footer {
   box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: 1fr 2fr;
-  max-width: 816px;
+  max-width: var(--page-width);
   margin: 0 auto 20px;
   align-content: start;
 }
@@ -48,36 +55,37 @@ footer {
   display: block;
 }
 
-.Content {
+.General .Content {
   color: white;
   align-items: center;
   position: relative;
 }
 
 .General .Content h1 {
-  font-size: 48px;
+  font-size: 44px;
   text-align: center;
-  margin: 16px;
+  margin: 32px 16px 16px;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .General .Content h2 {
-  font-size: 32px;
+  font-size: 24px;
   text-align: center;
-  margin: 8px;
+  margin: 0px 8px 16px;
+  font-weight: 300;
 }
 
 .contact-info {
   display: flex;
   justify-content: space-around;
   padding: 8px;
-}
-
-.contact-info div {
-  font-size: 1.3rem;
+  margin-bottom: 12px;
 }
 
 .contact-info div span {
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .general-form form {
@@ -87,16 +95,23 @@ footer {
   padding: 16px;
 }
 
-form label {
+.general-form form label {
   color: white;
   text-transform: uppercase;
 }
 
-form input {
-  padding: 8px 16px;
-  border: 1px solid #434343;
+form input,
+textarea {
+  padding: 6px 8px;
+  border: 1px solid #9b9b9b;
   border-radius: 4px;
   margin-bottom: 8px;
+}
+
+form input:hover,
+textarea:hover {
+  background-color: #f5f5f5;
+  border-color: #000000;
 }
 
 .edit-general {
@@ -105,7 +120,7 @@ form input {
   right: 0px;
   top: 0px;
   margin-right: 24px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 button {
@@ -113,24 +128,45 @@ button {
   text-transform: uppercase;
   border-radius: 4px;
   border: 1px solid #434343;
+  cursor: pointer;
 }
+
+button:hover {
+  background-color: rgb(204, 202, 202);
+  border: 1px solid #222222;
+}
+
+.cv div h1 {
+  border-bottom: 1px solid #284b68;
+}
+
+h1 {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin: 0px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: initial;
+}
+
+label {
+  text-transform: uppercase;
+}
+
 
 
 .Education {
   background-color: #dddddd;
   position: relative;
-}
-
-.Education .Content {
-  color: black;
-}
-
-.Education h1 {
-  text-align: center;
-}
-
-.Education ul {
-  list-style-type: none;
+  padding: 24px;
+  max-width: var(--left-width);
 }
 
 .Education:hover .add-Education {
@@ -143,7 +179,7 @@ button {
   right: 0px;
   top: 0px;
   margin-right: 24px;
-  margin-top: 18px;
+  margin-top: 24px;
 }
 
 .school {
@@ -152,7 +188,6 @@ button {
 
 .degree {
   font-style: italic;
-  font-size: 0.9em;
   margin: 8px 0px;
 }
 
@@ -162,17 +197,13 @@ button {
 
 .edu-desc {
   margin-bottom: 24px;
-}
-
-.education-form form label {
-  color: black;
+  overflow-wrap: break-word;
 }
 
 .education-form form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 16px;
+  padding-top: 6px;
 }
 
 .btnGroup {
@@ -180,8 +211,12 @@ button {
   position: absolute;
   right: 0px;
   top: 0px;
-  margin-right: 24px;
-  margin-top: 18px;
+  margin-right: 0px;
+  margin-top: 0px;
+}
+
+.btnGroup button {
+  padding: 2px 8px;
 }
 
 li {
@@ -198,18 +233,8 @@ li:hover .btnGroup {
   background-color: #dddddd;
   grid-row: 3 / 4;
   position: relative;
-}
-
-.Skills .Content {
-  color: black;
-}
-
-.Skills h1 {
-  text-align: center;
-}
-
-.Skills ul {
-  list-style-type: none;
+  padding: var(--page-margins);
+  max-width: var(--left-width);
 }
 
 .Skills:hover .add-Skill {
@@ -222,18 +247,13 @@ li:hover .btnGroup {
   right: 0px;
   top: 0px;
   margin-right: 24px;
-  margin-top: 18px;
-}
-
-.skill-form form label {
-  color: black;
+  margin-top: 24px;
 }
 
 .skill-form form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 16px;
+  padding-top: 6px;
 }
 
 
@@ -241,18 +261,7 @@ li:hover .btnGroup {
 .Experience {
   grid-row: 2 / 4;
   position: relative;
-}
-
-.Experience .Content {
-  color: black;
-}
-
-.Experience h1 {
-  text-align: center;
-}
-
-.Experience ul {
-  list-style-type: none;
+  padding: var(--page-margins);
 }
 
 .Experience:hover .add-Exp {
@@ -265,7 +274,7 @@ li:hover .btnGroup {
   right: 0px;
   top: 0px;
   margin-right: 24px;
-  margin-top: 18px;
+  margin-top: 24px;
 }
 
 .company {
@@ -276,12 +285,10 @@ li:hover .btnGroup {
   display: flex;
   justify-content: space-between;
   margin: 8px 0px;
-  padding-right: 24px;
 }
 
 .title {
   font-style: italic;
-  font-size: 0.9em;
   margin: 0px;
 }
 
@@ -289,15 +296,10 @@ li:hover .btnGroup {
   margin-bottom: 24px;
 }
 
-.exp-form form label {
-  color: black;
-}
-
 .exp-form form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 16px;
+  padding-top: 6px;
 }
 
 
@@ -316,11 +318,10 @@ li:hover .btnGroup {
   position: absolute;
   right: 0px;
   top: 0px;
-  margin-right: 24px;
 }
 
 .task-btnGroup button {
-  padding: 0px 8px;
+  padding: 2px 8px;
 }
 
 .Tasks ul li:hover .task-btnGroup {
@@ -329,4 +330,10 @@ li:hover .btnGroup {
 
 .add-task {
   padding: 4px 8px;
+}
+
+.task-form form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
 }
