@@ -1,15 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
+  --page-height: 1056px;
   --page-width: 816px;
   --page-margins: 24px;
-  --left-width: calc(var(--page-width)/3 - 2*var(--page-margins));
+  --left-width: calc(var(--page-width)/3);
 }
 
 body {
   color: black;
   margin: 0px;
   font-family: 'Lato', sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -20,12 +26,16 @@ header {
   text-align: center;
   font-weight: 700;
   padding: 32px 0px;
-  margin-bottom: 24px;
 }
 
 header h1 {
   margin: 0px;
   font-size: 48px;
+}
+
+.print {
+  margin: 24px 0px;
+  align-self: center;
 }
 
 footer {
@@ -41,9 +51,11 @@ footer {
   box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto minmax(863px, min-content);
   max-width: var(--page-width);
+  min-height: var(--page-height);
   margin: 0 auto 20px;
-  align-content: start;
+  align-content: start
 }
 
 .General {
@@ -162,11 +174,14 @@ label {
 
 
 
-.Education {
+.cv-left {
   background-color: #dddddd;
+  max-width: var(--left-width);
+}
+
+.Education {
   position: relative;
   padding: 24px;
-  max-width: var(--left-width);
 }
 
 .Education:hover .add-Education {
@@ -230,11 +245,8 @@ li:hover .btnGroup {
 
 
 .Skills {
-  background-color: #dddddd;
-  grid-row: 3 / 4;
   position: relative;
   padding: var(--page-margins);
-  max-width: var(--left-width);
 }
 
 .Skills:hover .add-Skill {
@@ -259,7 +271,6 @@ li:hover .btnGroup {
 
 
 .Experience {
-  grid-row: 2 / 4;
   position: relative;
   padding: var(--page-margins);
 }
