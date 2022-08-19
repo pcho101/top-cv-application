@@ -1,115 +1,88 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class Tasks extends Component {
-  constructor() {
-    super();
+const Tasks = () => {
+  const [taskList, setTaskList] = useState([{
+    id: 0,
+    task: "Task 0",
+    visible: true,
+  }]);
 
-    this.editContent = this.editContent.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-
-    this.addNewContent = this.addNewContent.bind(this);
-    this.deleteContent = this.deleteContent.bind(this);
-
-    this.state = {
-      history: [{
-        id: 0,
-        task: "Task 1",
-
-        visible: true,
-      }
-      ],
-    };
-  }
-
-  editContent(e) {
+  const editContent = (e) => {
     const i = Number(e.target.id);
-    const history = this.state.history.map((element, index) => {
-      if (index === i) {
-        element.visible = element.visible ? false : true;
-      }
-      return element;
-    })
-    this.setState({
-      history: history,
-    })
+    setTaskList(
+      taskList.map((element, index) => {
+        if (index === i) {
+          element.visible = element.visible ? false : true;
+        }
+        return element;
+      })
+    );
   }
 
-  onSubmitForm(e) {
+  const onSubmitForm = (e) => {
     e.preventDefault();
-    this.editContent(e);
+    editContent(e);
   }
 
-  handleInputChange(e) {
+  const handleInputChange = (e) => {
     const i = Number(e.target.parentElement.id);
-    const history = this.state.history.map((element, index) => {
-      if (index === i) {
-        if(e.target.id === 'task') element.task = e.target.value;
-      }
-      return element;
-    })
-    this.setState({
-      history: history,
-    })
+    setTaskList(
+      taskList.map((element, index) => {
+        if (index === i) {
+          if(e.target.id === 'task') element.task = e.target.value;
+        }
+        return element;
+      })
+    );
   }
 
-  addNewContent(e) {
-    const history = this.state.history;
-    const number = this.state.history.length;
-    this.setState({
-      history: history.concat([{
-        id: number,
-        task: "task",
-
-        visible: true,
-      }]),
-    });
+  const addNewContent = () => {
+    setTaskList([...taskList, {
+      id: taskList.length,
+      task: "Task " + taskList.length,
+      visible: true,
+    }])
   }
 
-  deleteContent(e) {
-    const history = this.state.history.filter((element, index) => index !== Number(e.target.id));
-    this.setState({
-      history: history,
-    });
+  const deleteContent = (e) => {
+    setTaskList(taskList.filter((element, index) => index !== Number(e.target.id)));
   }
 
-  render() {
-    const history = this.state.history;
-    const moves = history.map((element, index) => {
-      return (
-        <li key={index}>
-          <div className="Content" style={{display: this.state.history[index].visible ? "block" : "none"}}>
-            <div className="task">{this.state.history[index].task}</div>
-          </div>
-          <div className="task-btnGroup">
-            <button id={index} onClick={this.editContent} style={{display: this.state.history[index].visible ? "inline-block" : "none"}}>E</button>
-            <button id={index} onClick={this.deleteContent}>X</button>
-          </div>
-          <div className="task-form" style={{display: !this.state.history[index].visible ? "block" : "none"}}>
-            <form
-              id={index}
-              onSubmit={this.onSubmitForm}
-            >
-              <label htmlFor="task">task</label>
-              <input
-                id="task"
-                type="text"
-                value={this.state.history[index].task}
-                onChange={this.handleInputChange}
-              />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </li>
-      );
-    });
+  const allTasks = taskList.map((element, index) => {
     return (
-      <div className="Tasks">
-        <ul>{moves}</ul>
-        <button className="add-task" onClick={this.addNewContent}>Add New Task</button>
-      </div>
+      <li key={index}>
+        <div className="Content" style={{display: taskList[index].visible ? "block" : "none"}}>
+          <div className="task">{taskList[index].task}</div>
+        </div>
+        <div className="task-btnGroup">
+          <button id={index} onClick={editContent} style={{display: taskList[index].visible ? "inline-block" : "none"}}>E</button>
+          <button id={index} onClick={deleteContent}>X</button>
+        </div>
+        <div className="task-form" style={{display: !taskList[index].visible ? "block" : "none"}}>
+          <form
+            id={index}
+            onSubmit={onSubmitForm}
+          >
+            <label htmlFor="task">task</label>
+            <input
+              id="task"
+              type="text"
+              value={taskList[index].task}
+              onChange={handleInputChange}
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </li>
     )
-  }
-}
+  });
+  
+  return (
+    <div className="Tasks">
+      <ul>{allTasks}</ul>
+      <button className="add-task" onClick={addNewContent}>Add New Task</button>
+    </div>
+  );
+};
 
 export default Tasks;

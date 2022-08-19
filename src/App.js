@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useRef } from "react";
 import Education from "./components/Education";
 import General from "./components/General";
 import Experience from "./components/Experience";
@@ -8,47 +8,39 @@ import Footer from "./components/Footer";
 import './styles/App.css';
 import ReactToPrint from 'react-to-print';
 
-class App extends Component {
-  constructor() {
-    super();
+const App = () => {
+  const componentRef = useRef();
 
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <ReactToPrint
-          trigger={() => {
-            return <button className="print">Export CV to PDF</button>;
-          }}
-          content={() => this.componentRef}
-          onBeforeGetContent={() => {
-            const taskBtns = document.querySelectorAll('.add-task');
-            taskBtns.forEach(
-              button => button.style.display = 'none'
-            )
-          }}
-          onAfterPrint={() => {
-            const taskBtns = document.querySelectorAll('.add-task');
-            taskBtns.forEach(
-              button => button.style.display = 'block'
-            )
-          }}
-        />
-        <div className="cv" ref={el => (this.componentRef = el)}>
-          <General />
-          <div className="cv-left">
-            <Education />
-            <Skills />
-          </div>
-          <Experience />
+  return (
+    <div className="App">
+      <Header />
+      <ReactToPrint
+        trigger={() => <button className="print">Export CV to PDF</button>}
+        content={() => componentRef.current}
+        onBeforeGetContent={() => {
+          const taskBtns = document.querySelectorAll('.add-task');
+          taskBtns.forEach(
+            button => button.style.display = 'none'
+          )
+        }}
+        onAfterPrint={() => {
+          const taskBtns = document.querySelectorAll('.add-task');
+          taskBtns.forEach(
+            button => button.style.display = 'block'
+          )
+        }}
+      />
+      <div className="cv" ref={componentRef}>
+        <General />
+        <div className="cv-left">
+          <Education />
+          <Skills />
         </div>
-        <Footer />
+        <Experience />
       </div>
-    )
-  }
+      <Footer />
+    </div>
+  )
 }
 
 export default App;
