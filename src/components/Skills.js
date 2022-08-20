@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import uniqid from "uniqid";
+import ButtonGroup from "./ButtonGroup";
+import Form from "./Form";
 
 const Skills = () => {
   const [skillList, setSkillList] = useState([
@@ -65,25 +67,22 @@ const Skills = () => {
         <div className="Content" style={{display: skillList[index].visible ? "block" : "none"}}>
           <h2>{skillList[index].skill}</h2>
         </div>
-        <div className="btnGroup">
-          <button id={element.id} onClick={editContent} style={{display: skillList[index].visible ? "inline-block" : "none"}}>E</button>
-          <button id={element.id} onClick={deleteContent}>X</button>
-        </div>
-        <div className="skill-form" style={{display: !skillList[index].visible ? "block" : "none"}}>
-          <form
-            id={element.id}
-            onSubmit={onSubmitForm}
-          >
-            <label htmlFor="skill">Skill</label>
-            <input
-              id="skill"
-              type="text"
-              value={skillList[index].skill}
-              onChange={handleInputChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+        <ButtonGroup
+          id={element.id}
+          edit={editContent}
+          del={deleteContent}
+          visible={skillList[index].visible}
+          name="btnGroup"
+        />
+        <Form
+          option="Skills"
+          id={element.id}
+          submit={onSubmitForm}
+          handle={handleInputChange}
+          visible={skillList[index].visible}
+          value={skillList[index].skill}
+          name="skill-form"
+        />
       </li>
     );
   });

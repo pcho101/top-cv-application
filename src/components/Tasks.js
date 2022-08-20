@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import uniqid from "uniqid";
+import ButtonGroup from "./ButtonGroup";
+import Form from "./Form";
 
 const Tasks = () => {
   const [taskList, setTaskList] = useState([{
@@ -53,25 +55,22 @@ const Tasks = () => {
         <div className="Content" style={{display: taskList[index].visible ? "block" : "none"}}>
           <div className="task">{taskList[index].task}</div>
         </div>
-        <div className="task-btnGroup">
-          <button id={element.id} onClick={editContent} style={{display: taskList[index].visible ? "inline-block" : "none"}}>E</button>
-          <button id={element.id} onClick={deleteContent}>X</button>
-        </div>
-        <div className="task-form" style={{display: !taskList[index].visible ? "block" : "none"}}>
-          <form
-            id={element.id}
-            onSubmit={onSubmitForm}
-          >
-            <label htmlFor="task">task</label>
-            <input
-              id="task"
-              type="text"
-              value={taskList[index].task}
-              onChange={handleInputChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+        <ButtonGroup
+          id={element.id}
+          edit={editContent}
+          del={deleteContent}
+          visible={taskList[index].visible}
+          name="task-btnGroup"
+        />
+        <Form
+          option="Tasks"
+          id={element.id}
+          submit={onSubmitForm}
+          handle={handleInputChange}
+          visible={taskList[index].visible}
+          value={taskList[index].task}
+          name="task-form"
+        />
       </li>
     )
   });

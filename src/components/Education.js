@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import uniqid from "uniqid";
+import ButtonGroup from "./ButtonGroup";
+import Form from "./Form";
 
 const Education = () => {
   const [eduList, setEduList] = useState([
@@ -74,52 +76,22 @@ const Education = () => {
           </div>
           <div className="edu-desc">{eduList[index].desc}</div>
         </div>
-        <div className="btnGroup">
-          <button id={element.id} onClick={editContent} style={{display: eduList[index].visible ? "inline-block" : "none"}}>E</button>
-          <button id={element.id} onClick={deleteContent}>X</button>
-        </div>
-        <div className="education-form" style={{display: !eduList[index].visible ? "block" : "none"}}>
-          <form
-            id={element.id}
-            onSubmit={onSubmitForm}
-          >
-            <label htmlFor="school">School</label>
-            <input
-              id="school"
-              type="text"
-              value={eduList[index].school}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="degree">Degree</label>
-            <input
-              id="degree"
-              type="text"
-              value={eduList[index].degree}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="dateStart">Start Date</label>
-            <input
-              id="dateStart"
-              type="month"
-              value={eduList[index].dateStart}
-              onChange={handleInputChange}
-              />
-            <label htmlFor="dateEnd">End Date</label>
-            <input
-              id="dateEnd"
-              type="month"
-              value={eduList[index].dateEnd}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="desc">Description</label>
-            <textarea
-              id="desc"
-              value={eduList[index].desc}
-              onChange={handleInputChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+        <ButtonGroup
+          id={element.id}
+          edit={editContent}
+          del={deleteContent}
+          visible={eduList[index].visible}
+          name="btnGroup"
+        />
+        <Form
+          option="Education"
+          id={element.id}
+          submit={onSubmitForm}
+          handle={handleInputChange}
+          visible={eduList[index].visible}
+          value={eduList[index]}
+          name="education-form"
+        />
       </li>
     );
   });

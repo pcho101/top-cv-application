@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Form from "./Form";
 
 const General = () => {
   const [name, setName] = useState("Bender Bending Rodriguez");
@@ -40,46 +41,14 @@ const General = () => {
         </div>
         <button className="edit-general" onClick={editContent}>Edit</button>
       </div>
-      <div className="general-form" style={{display: !isVisible ? "block" : "none"}}>
-        <form onSubmit={onSubmitForm}>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="phone">Phone</label>
-          <input
-            id="phone"
-            type="tel"
-            value={phone}
-            onChange={handleInputChange}
-            />
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="linkedin">Linkedin</label>
-          <input
-            id="linkedin"
-            type="text"
-            value={linkedin}
-            onChange={handleInputChange}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      <Form
+        option="General"
+        submit={onSubmitForm}
+        handle={handleInputChange}
+        visible={isVisible}
+        value={{name, title, phone, email, linkedin}}
+        name="general-form"
+      />
     </div>
   )
 }

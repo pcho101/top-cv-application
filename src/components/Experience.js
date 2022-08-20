@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Tasks from "./Tasks";
 import uniqid from "uniqid";
+import ButtonGroup from "./ButtonGroup";
+import Form from "./Form";
 
 const Experience = () => {
   const [expList, setExpList] = useState([
@@ -82,46 +84,22 @@ const Experience = () => {
           </div>
           <div className="tasks"><Tasks /></div>
         </div>
-        <div className="btnGroup">
-          <button id={element.id} onClick={editContent} style={{display: expList[index].visible ? "inline-block" : "none"}}>E</button>
-          <button id={element.id} onClick={deleteContent}>X</button>
-        </div>
-        <div className="exp-form" style={{display: !expList[index].visible ? "block" : "none"}}>
-          <form
-            id={element.id}
-            onSubmit={onSubmitForm}
-          >
-            <label htmlFor="company">Company</label>
-            <input
-              id="company"
-              type="text"
-              value={expList[index].company}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="title">Title</label>
-            <input
-              id="title"
-              type="text"
-              value={expList[index].title}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="dateStart">Start Date</label>
-            <input
-              id="dateStart"
-              type="month"
-              value={expList[index].dateStart}
-              onChange={handleInputChange}
-              />
-            <label htmlFor="dateEnd">End Date</label>
-            <input
-              id="dateEnd"
-              type="month"
-              value={expList[index].dateEnd}
-              onChange={handleInputChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+        <ButtonGroup
+          id={element.id}
+          edit={editContent}
+          del={deleteContent}
+          visible={expList[index].visible}
+          name="btnGroup"
+        />
+        <Form
+          option="Exp"
+          id={element.id}
+          submit={onSubmitForm}
+          handle={handleInputChange}
+          visible={expList[index].visible}
+          value={expList[index]}
+          name="exp-form"
+        />
       </li>
     )
   });
