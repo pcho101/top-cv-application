@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Tasks from "./Tasks";
+import uniqid from "uniqid";
 
 const Experience = () => {
   const [expList, setExpList] = useState([
     {
-      id: 0,
+      id: uniqid(),
       company: "Planet Express",
       title: "Assistant Manager of Sales",
       dateStart: "3010-02",
@@ -12,7 +13,7 @@ const Experience = () => {
       visible: true,
     },
     {
-      id: 1,
+      id: uniqid(),
       company: "Planet Express",
       title: "Chef",
       dateStart: "3000-02",
@@ -22,10 +23,9 @@ const Experience = () => {
   ]);
 
   const editContent = (e) => {
-    const i = Number(e.target.id);
     setExpList(
-      expList.map((element, index) => {
-        if (index === i) {
+      expList.map((element) => {
+        if (element.id === e.target.id) {
           element.visible = element.visible ? false : true;
         }
         return element;
@@ -39,10 +39,9 @@ const Experience = () => {
   }
 
   const handleInputChange = (e) => {
-    const i = Number(e.target.parentElement.id);
     setExpList(
-      expList.map((element, index) => {
-        if (index === i) {
+      expList.map((element) => {
+        if (element.id === e.target.parentElement.id) {
           if(e.target.id === 'company') element.company = e.target.value;
           if(e.target.id === 'title') element.title = e.target.value;
           if(e.target.id === 'dateStart') element.dateStart = e.target.value;
@@ -55,7 +54,7 @@ const Experience = () => {
 
   const addNewContent = (e) => {
     setExpList([...expList, {
-      id: expList.length,
+      id: uniqid(),
       company: 'Company',
       title: 'Role',
       dateStart: '2022-01',
@@ -65,12 +64,12 @@ const Experience = () => {
   }
 
   const deleteContent = (e) => {
-    setExpList(expList.filter((element, index) => index !== Number(e.target.id)));
+    setExpList(expList.filter((element) => element.id !== e.target.id));
   }
 
   const allExp = expList.map((element, index) => {
     return (
-      <li key={index}>
+      <li key={element.id}>
         <div className="Content" style={{display: expList[index].visible ? "block" : "none"}}>
           <h2 className="company">{expList[index].company}</h2>
           <div className="title-date">
@@ -84,12 +83,12 @@ const Experience = () => {
           <div className="tasks"><Tasks /></div>
         </div>
         <div className="btnGroup">
-          <button id={index} onClick={editContent} style={{display: expList[index].visible ? "inline-block" : "none"}}>E</button>
-          <button id={index} onClick={deleteContent}>X</button>
+          <button id={element.id} onClick={editContent} style={{display: expList[index].visible ? "inline-block" : "none"}}>E</button>
+          <button id={element.id} onClick={deleteContent}>X</button>
         </div>
         <div className="exp-form" style={{display: !expList[index].visible ? "block" : "none"}}>
           <form
-            id={index}
+            id={element.id}
             onSubmit={onSubmitForm}
           >
             <label htmlFor="company">Company</label>

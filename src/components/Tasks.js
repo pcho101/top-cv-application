@@ -1,17 +1,17 @@
 import React, { useState } from "react";
+import uniqid from "uniqid";
 
 const Tasks = () => {
   const [taskList, setTaskList] = useState([{
-    id: 0,
+    id: uniqid(),
     task: "Task 0",
     visible: true,
   }]);
 
   const editContent = (e) => {
-    const i = Number(e.target.id);
     setTaskList(
-      taskList.map((element, index) => {
-        if (index === i) {
+      taskList.map((element) => {
+        if (element.id === e.target.id) {
           element.visible = element.visible ? false : true;
         }
         return element;
@@ -25,10 +25,9 @@ const Tasks = () => {
   }
 
   const handleInputChange = (e) => {
-    const i = Number(e.target.parentElement.id);
     setTaskList(
-      taskList.map((element, index) => {
-        if (index === i) {
+      taskList.map((element) => {
+        if (element.id === e.target.parentElement.id) {
           if(e.target.id === 'task') element.task = e.target.value;
         }
         return element;
@@ -38,29 +37,29 @@ const Tasks = () => {
 
   const addNewContent = () => {
     setTaskList([...taskList, {
-      id: taskList.length,
+      id: uniqid(),
       task: "Task " + taskList.length,
       visible: true,
     }])
   }
 
   const deleteContent = (e) => {
-    setTaskList(taskList.filter((element, index) => index !== Number(e.target.id)));
+    setTaskList(taskList.filter((element) => element.id !== e.target.id));
   }
 
   const allTasks = taskList.map((element, index) => {
     return (
-      <li key={index}>
+      <li key={element.id}>
         <div className="Content" style={{display: taskList[index].visible ? "block" : "none"}}>
           <div className="task">{taskList[index].task}</div>
         </div>
         <div className="task-btnGroup">
-          <button id={index} onClick={editContent} style={{display: taskList[index].visible ? "inline-block" : "none"}}>E</button>
-          <button id={index} onClick={deleteContent}>X</button>
+          <button id={element.id} onClick={editContent} style={{display: taskList[index].visible ? "inline-block" : "none"}}>E</button>
+          <button id={element.id} onClick={deleteContent}>X</button>
         </div>
         <div className="task-form" style={{display: !taskList[index].visible ? "block" : "none"}}>
           <form
-            id={index}
+            id={element.id}
             onSubmit={onSubmitForm}
           >
             <label htmlFor="task">task</label>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import uniqid from "uniqid";
 
 const Education = () => {
   const [eduList, setEduList] = useState([
     {
-      id: 0,
+      id: uniqid(),
       degree: "Bending Degree",
       school: "Bending College",
       dateStart: "2996-02",
@@ -14,10 +15,9 @@ const Education = () => {
   ])
 
   const editContent = (e) => {
-    const i = Number(e.target.id);
     setEduList(
-      eduList.map((element, index) => {
-        if (index === i) {
+      eduList.map((element) => {
+        if (element.id === e.target.id) {
           element.visible = element.visible ? false : true;
         }
         return element;
@@ -31,10 +31,9 @@ const Education = () => {
   }
 
   const handleInputChange = (e) => {
-    const i = Number(e.target.parentElement.id);
     setEduList(
-      eduList.map((element, index) => {
-        if (index === i) {
+      eduList.map((element) => {
+        if (element.id === e.target.parentElement.id) {
           if(e.target.id === 'school') element.school = e.target.value;
           if(e.target.id === 'degree') element.degree = e.target.value;
           if(e.target.id === 'dateStart') element.dateStart = e.target.value;
@@ -48,7 +47,7 @@ const Education = () => {
 
   const addNewContent = () => {
     setEduList([...eduList, {
-      id: eduList.length,
+      id: uniqid(),
       school: 'College',
       degree: 'Degree',
       dateStart: "2022-01",
@@ -59,12 +58,12 @@ const Education = () => {
   }
 
   const deleteContent = (e) => {
-    setEduList(eduList.filter((element, index) => index !== Number(e.target.id)))
+    setEduList(eduList.filter((element) => element.id !== e.target.id))
   }
 
   const allEdu = eduList.map((element, index) => {
     return (
-      <li key={index}>
+      <li key={element.id}>
         <div className="Content" style={{display: eduList[index].visible ? "block" : "none"}}>
           <h2 className="school">{eduList[index].school}</h2>
           <h2 className="degree">{eduList[index].degree}</h2>
@@ -76,12 +75,12 @@ const Education = () => {
           <div className="edu-desc">{eduList[index].desc}</div>
         </div>
         <div className="btnGroup">
-          <button id={index} onClick={editContent} style={{display: eduList[index].visible ? "inline-block" : "none"}}>E</button>
-          <button id={index} onClick={deleteContent}>X</button>
+          <button id={element.id} onClick={editContent} style={{display: eduList[index].visible ? "inline-block" : "none"}}>E</button>
+          <button id={element.id} onClick={deleteContent}>X</button>
         </div>
         <div className="education-form" style={{display: !eduList[index].visible ? "block" : "none"}}>
           <form
-            id={index}
+            id={element.id}
             onSubmit={onSubmitForm}
           >
             <label htmlFor="school">School</label>
