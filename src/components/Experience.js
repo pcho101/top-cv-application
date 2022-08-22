@@ -10,16 +10,32 @@ const Experience = () => {
       id: uniqid(),
       company: "Planet Express",
       title: "Assistant Manager of Sales",
-      dateStart: "3010-02",
-      dateEnd: "3010-02",
+      dateStart: "3010-01",
+      dateEnd: "3010-01",
+      visible: true,
+    },
+    {
+      id: uniqid(),
+      company: "Self-Employed",
+      title: "Washboard Player",
+      dateStart: "3002-01",
+      dateEnd: "3003-04",
+      visible: true,
+    },
+    {
+      id: uniqid(),
+      company: "Ultimate Robot Fighting League",
+      title: "Fighter",
+      dateStart: "3001-01",
+      dateEnd: "3002-02",
       visible: true,
     },
     {
       id: uniqid(),
       company: "Planet Express",
       title: "Chef",
-      dateStart: "3000-02",
-      dateEnd: "3009-02",
+      dateStart: "3000-01",
+      dateEnd: "3009-12",
       visible: true,
     }
   ]);
@@ -28,7 +44,7 @@ const Experience = () => {
     setExpList(
       expList.map((element) => {
         if (element.id === e.target.id) {
-          element.visible = element.visible ? false : true;
+          element.visible = !element.visible;
         }
         return element;
       })
@@ -54,7 +70,7 @@ const Experience = () => {
     )
   }
 
-  const addNewContent = (e) => {
+  const addNewContent = () => {
     setExpList([...expList, {
       id: uniqid(),
       company: 'Company',
@@ -69,6 +85,12 @@ const Experience = () => {
     setExpList(expList.filter((element) => element.id !== e.target.id));
   }
 
+  const formatDate = (dateString) => {
+    const d = new Date(dateString)
+    d.setDate(d.getDate() + 1);
+    return d.toLocaleString('en-US', {year:'numeric', month:'short'})
+  }
+
   const allExp = expList.map((element, index) => {
     return (
       <li key={element.id}>
@@ -77,9 +99,9 @@ const Experience = () => {
           <div className="title-date">
             <h2 className="title">{expList[index].title}</h2>
             <div className="company-dates">
-              {new Date(expList[index].dateStart).toLocaleString('en-US', {year:'numeric', month:'short'})}
+              {formatDate(expList[index].dateStart)}
               <span> - </span>
-              {new Date(expList[index].dateEnd).toLocaleString('en-US', {year:'numeric', month:'short'})}
+              {formatDate(expList[index].dateEnd)}
             </div>
           </div>
           <div className="tasks"><Tasks /></div>

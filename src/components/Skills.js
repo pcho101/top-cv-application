@@ -12,12 +12,17 @@ const Skills = () => {
     },
     {
       id: uniqid(),
+      skill: "Stealing",
+      visible: true,
+    },
+    {
+      id: uniqid(),
       skill: "Drinking",
       visible: true,
     },
     {
       id: uniqid(),
-      skill: "Gambling",
+      skill: "Smoking",
       visible: true,
     },
   ])
@@ -26,7 +31,7 @@ const Skills = () => {
     setSkillList(
       skillList.map((element) => {
         if (element.id === e.target.id) {
-          element.visible = element.visible ? false : true;
+          element.visible = !element.visible;
         }
         return element;
       })

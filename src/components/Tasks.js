@@ -14,7 +14,7 @@ const Tasks = () => {
     setTaskList(
       taskList.map((element) => {
         if (element.id === e.target.id) {
-          element.visible = element.visible ? false : true;
+          element.visible = !element.visible;
         }
         return element;
       })

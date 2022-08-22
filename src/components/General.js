@@ -3,14 +3,14 @@ import Form from "./Form";
 
 const General = () => {
   const [name, setName] = useState("Bender Bending Rodriguez");
-  const [title, setTitle] = useState("Bending Unit");
+  const [title, setTitle] = useState("Bending Unit 22");
   const [phone, setPhone] = useState("010-100-101");
   const [email, setEmail] = useState("bend@planex.xyz");
   const [linkedin, setLinkedin] = useState("bend@linkedin.com");
   const [isVisible, setIsVisible] = useState(true);
 
   const editContent = () => {
-    setIsVisible(isVisible ? false : true);
+    setIsVisible(!isVisible);
   }
 
   const onSubmitForm = (e) => {

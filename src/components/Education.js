@@ -9,9 +9,9 @@ const Education = () => {
       id: uniqid(),
       degree: "Bending Degree",
       school: "Bending College",
-      dateStart: "2996-02",
-      dateEnd: "2996-02",
-      desc: "Completed program in 1.5 milliseconds.",
+      dateStart: "2996-01",
+      dateEnd: "2996-01",
+      desc: "Minored in Robo-American Studies",
       visible: true,
     }
   ])
@@ -20,7 +20,7 @@ const Education = () => {
     setEduList(
       eduList.map((element) => {
         if (element.id === e.target.id) {
-          element.visible = element.visible ? false : true;
+          element.visible = !element.visible;
         }
         return element;
       })
@@ -33,6 +33,7 @@ const Education = () => {
   }
 
   const handleInputChange = (e) => {
+    console.log(e.target.value);
     setEduList(
       eduList.map((element) => {
         if (element.id === e.target.parentElement.id) {
@@ -63,6 +64,12 @@ const Education = () => {
     setEduList(eduList.filter((element) => element.id !== e.target.id))
   }
 
+  const formatDate = (dateString) => {
+    const d = new Date(dateString)
+    d.setDate(d.getDate() + 1);
+    return d.toLocaleString('en-US', {year:'numeric', month:'short'})
+  }
+
   const allEdu = eduList.map((element, index) => {
     return (
       <li key={element.id}>
@@ -70,9 +77,9 @@ const Education = () => {
           <h2 className="school">{eduList[index].school}</h2>
           <h2 className="degree">{eduList[index].degree}</h2>
           <div className="degree-dates">
-            {new Date(eduList[index].dateStart).toLocaleString('en-US', {year:'numeric', month:'short'})}
+            {formatDate(eduList[index].dateStart)}
             <span> - </span>
-            {new Date(eduList[index].dateEnd).toLocaleString('en-US', {year:'numeric', month:'short'})}
+            {formatDate(eduList[index].dateEnd)}
           </div>
           <div className="edu-desc">{eduList[index].desc}</div>
         </div>
